@@ -45,12 +45,12 @@ conda env: lizard _env
 
 installed: 
 minimap for nanopore
-```
+```bash
  $ minimap2 --version
 2.28-r1209                     
 ```
 
-```
+```bash
 $ bowtie2 --version
 /projects/bgmp/calz/miniforge3/envs/lizard_env/bin/bowtie2-align-s version 2.5.4
 64-bit
@@ -60,23 +60,29 @@ Compiler: gcc version 12.4.0 (conda-forge gcc 12.4.0-0)
 Options: -O3 -msse2 -funroll-loops -g3 -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /projects/bgmp/calz/miniforge3/envs/lizard_env/include -fdebug-prefix-map=/opt/conda/conda-bld/bowtie2_1724161881257/work=/usr/local/src/conda/bowtie2-2.5.4 -fdebug-prefix-map=/projects/bgmp/calz/miniforge3/envs/lizard_env=/usr/local/src/conda-prefix -O3
 Sizeof {int, long, long long, void*, size_t, off_t}: {4, 8, 8, 8, 8, 8}
 ```
+
 for today:\
 julia ran of V5 ONT
 run minimap2 on V3 ONT:\
-```
+
+```bash
 $ sbatch v3_minimap2_run1.sh 
 Submitted batch job 17754828
 ```
+
 **download samtools and fastqc**
-```
+
+```bash
 $ samtools --version                                                                                                   
 samtools 1.21
 Using htslib 1.21
 ```
-```
+
+```bash
 $ fastqc --version                                                                                                          
 FastQC v0.12.1                         
 ```
+
 output sam file: /projects/bgmp/shared/groups/2024/lizards/calz/test_v3_aln.sam
 run bowtie 2 on illumina 
 
@@ -121,3 +127,36 @@ Mapped Reads: 33346530
 Unmapped Reads: 600141
 Percent of Mapped Reads: 98.23210647076411%
 ```
+## 10-25-24 to 11-01-2024: Julia
+
+Worked on polyA script increased stringency (only two errors) and lowered polyA
+length to ~100 base pair, this improved our read splitting but produced many read fragments
+
+Read fragments <100 bp were 5% of our data, which we just decided to hard cut
+
+### trying minimap lrhq
+
+switching to max k size and only allowing 1 secondary aln, there is less cross
+mapping:
+Command used
+
+```bash
+minimap2 -ax lr:hq -k 28 -N 1 ../shared/ref_genome/a_neomexicanus_AspMarm2.0_AspAri2.0.fasta under_10k_nano_v5.fastq.gz
+```
+
+### abandoned polyA script
+After the project update presentation abandoned custom polyA script
+- instead used pychopper because it can be run from the terminal
+
+### installed pychopper
+
+```bash
+conda install -c nanoporetech -c conda-forge -c bioconda "nanoporetech::pychopper"
+```
+
+### Ran pychopper with default args
+
+```bash
+pychopper shared/under_10k_nano_v5.fastq.gz jujo/chop_test.fastq.gz
+```
+
