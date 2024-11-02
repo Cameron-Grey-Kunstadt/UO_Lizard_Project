@@ -160,3 +160,29 @@ conda install -c nanoporetech -c conda-forge -c bioconda "nanoporetech::pychoppe
 pychopper shared/under_10k_nano_v5.fastq.gz jujo/chop_test.fastq.gz
 ```
 
+this was slow AF must be a way to optimize/parallelize
+```bash
+Finished processing file: ../shared/under_10k_nano_v5.fastq.gz
+Input reads failing mean quality filter (Q < 7.0): 162364 (3.14%)
+Output fragments failing length filter (length < 50): 50427
+Detected 2 potential artefactual primer configurations:
+Configuration   NrReads PercentReads
+SSP,SSP         446119  8.91%
+SSP,SSP,SSP     184172  3.68%
+/projects/bgmp/jujo/miniforge3/envs/tail/lib/python3.10/site-packages/pychopper/scripts/pychopper.py:184: FutureWarning: Calling float on a single element Series is deprecated and will raise a TypeError in the future. Use float(ser.iloc[0]) instead
+  found, rescue, unusable = float(rs.loc[rs.Name == "Primers_found", ].Value), float(rs.loc[rs.Name == "Rescue", ].Value), float(rs.loc[rs.Name == "Unusable", ].Value)
+-----------------------------------
+Reads with two primers: 6.52%
+Rescued reads:          0.09%
+Unusable reads:         93.39%
+-----------------------------------
+(tail) [jujo@n0352 jujo]$ 
+```
+something clearly went wrong but ran minimap on this output anyways
+`minimap2 -ax map-ont ../shared/ref_genome/a_neomexicanus_AspMarm2.0_AspAri2.0.fasta chop_test.fastq.gz > chop_test.sam`
+
+Of the 6% of surviving reads, 97.6% of them mapped :muscle:
+The number of mapped reads is: 97.61466014018796%
+The number of unmapped reads in 2.3853398598120354%
+
+IGV output looks the same as usual :sob:
