@@ -1,13 +1,14 @@
-# UO_Lizard_Project
+# UO Lizard Project
+Carter Alzamora, Julia Jones, Cameron Kunstadt
 
 ## Objective
 
-Due to the nature of Direct RNA Nanopore Sequencing, the resulting data contains artificially long reads >300kb, and large amounts of Poly-A content. This can make downstream processing and comparisons difficult. This pipeline attempts to clean up some of those issues, while maintaining good quality alignments. This 
+Due to the nature of Direct RNA Nanopore Sequencing, RNA strands can be pushed through the pores too quickly one after the other, so much so that the end of one strand and the start of the next cannot be determined. The resulting data contains artificially long reads >300kb, and large amounts of Poly-A content. This can make be problematic downstream processing and analysis. This pipeline attempts to clean up some of those issues, while maintaining good quality reads and alignments.
 
 ## Steps
 
 1. Trimming
-    - Trimmomatic is used for a first trimming step
+    - Trimmomatic is used for trimming poor quality regions
 2. Split on PolyAs
     - A custom PolyA Splitting Script searching for long stretches of As in series, with an adjustable amount of non-As also permitted, when these locations are found, the read is split into two sections along that point 
 3. Filter by read size
@@ -28,4 +29,4 @@ Due to the nature of Direct RNA Nanopore Sequencing, the resulting data contains
 
 ## Performance
 
-A test dataset showed a reduction in PolyA content from 60% to 20%, and a moderate increase in primary and supplementary alignments. The resulting dataset will be much more accurate for initial comparisons and statistics of interests such as number of reads, average length etc. An ideal version of this pipeline would have each read be one high-quality unique RNA strand per read.
+A test dataset showed a reduction in PolyA content from 60% to 20%, and a moderate increase in primary and supplementary alignments. The resulting dataset will be much more accurate for initial comparisons and statistics of interests such as number of reads, average length etc. An ideal result of this pipeline would have each read be one high-quality unique RNA strand per read.
