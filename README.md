@@ -14,12 +14,12 @@ Due to the nature of Direct RNA Nanopore Sequencing, RNA strands can be pushed t
 3. Filter by read size
     - Before the initial alignment, this simple filtering script can filter the fastq file by readsize, its purpose is to disallow small reads (~<100bp) from downstream steps.
 4. Initial Alignment
-    - Minimap 2 is used
-    - minimap2 -ax lr:hq -k 28 -N 1 -t 8 -c $GENOME_FILE $ALN_LF_FQ > $ALN_2
+    - Minimap 2 is used with the following parameters
+    - minimap2 -ax lr:hq -k 28 -N 1 -t 8 -c
 5. Filter by read size
-    - Another point to filter by readsize
+    - Filter by readsize again to remove and alignments that are too small
 6. Samtools filtering
-    - Secondary alignments are removed, and other low-quality alignments can also be removed
+    - Secondary alignments are removed, and other low-quality alignments are also removed
 7. Second Alignment
     - Now another alignment is used
 8. Samtools filtering
