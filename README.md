@@ -11,7 +11,7 @@ Required packaged for running: pandas, seaborn, samtools, minimap2, trimmomatic
 
 ## Use
 
-ONT_RNA_pipeline.sh is the main pipeline, some paths and settings will need to be change for your individual system. The other scripts that are needed are NEW_POLY.py, filter_by_readsize.py, and filter_sam_by_readsize.py.
+ONT_RNA_pipeline.sh is the main pipeline, each path to your genome file, analysis file, and each script will need to be modified. The other scripts that are needed are NEW_POLY.py, filter_by_readsize.py, and filter_sam_by_readsize.py.
 
 ## Steps
 
