@@ -1,6 +1,6 @@
 # UO Lizard Project
 Carter Alzamora, Julia Jones, Cameron Kunstadt
-
+~
 ## Objective
 
 Due to the nature of Direct RNA Nanopore Sequencing, RNA strands can be pushed through the pores too quickly one after the other, so much so that the end of one strand and the start of the next cannot be determined. The resulting data contains artificially long reads >300kb, and large amounts of Poly-A content. This can make be problematic downstream processing and analysis. This pipeline attempts to clean up some of those issues, while maintaining good quality reads and alignments.
