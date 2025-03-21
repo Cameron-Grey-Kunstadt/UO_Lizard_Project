@@ -23,13 +23,14 @@ ONT_RNA_pipeline.sh is the main pipeline, each path to your genome file, analysi
     - Before the initial alignment, this simple filtering script can filter the fastq file by readsize, its purpose is to disallow small reads (~<100bp) from downstream steps.
 4. Initial Alignment
     - Minimap 2 is used with the following parameters
-    - minimap2 -ax lr:hq -k 28 -N 1 -t 8 -c
+    - minimap2 -ax lr:hq -k 28 -N 5 -t 8 -c
 5. Filter by read size
     - Filter by readsize again to remove and alignments that are too small
 6. Samtools filtering
     - Secondary alignments are removed, and other low-quality alignments are also removed
 7. Second Alignment
     - Now another alignment is used
+    - minimap2 -ax lr:hq -k 28 -N 5 -t 8 -c
 8. Samtools filtering
     - Same samtools filtering steps
 9. FASTQ Conversion
