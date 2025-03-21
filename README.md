@@ -29,8 +29,8 @@ ONT_RNA_pipeline.sh is the main pipeline, each path to your genome file, analysi
 6. Samtools filtering
     - Secondary alignments are removed, and other low-quality alignments are also removed
 7. Second Alignment
-    - Now another alignment is used
-    - minimap2 -ax lr:hq -k 28 -N 5 -t 8 -c
+    -  Minimap 2 is used with the following parameters
+    - minimap2 -ax lr:hq -k 28 -N 1 -t 8 -c
 8. Samtools filtering
     - Same samtools filtering steps
 9. FASTQ Conversion
